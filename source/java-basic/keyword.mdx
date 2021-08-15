@@ -5,7 +5,8 @@ sidebar_position: 2
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import CenterImage from '@site/static/js/CenterImage';
+
+----
 
 ## 介绍一下 final 关键字？
 
@@ -75,12 +76,14 @@ import CenterImage from '@site/static/js/CenterImage';
 
 
 :::info 类的初始化顺序
-<CenterImage alt="init_order">https://i.loli.net/2021/07/29/YTFHv7G2xny9la8.png</CenterImage>
+![init_order](https://i.loli.net/2021/07/29/YTFHv7G2xny9la8.png)
 :::
 
 ## 介绍一下 synchronized 关键字？
 
 在 Java 中，`synchronized` 关键字是用来控制线程同步的，在多线程环境下，被 `synchronized` 关键字修饰的代码段、方法不会被多个线程同时执行。`synchronized` 既可以加在一段代码上，也可以加在方法上，还可以是类上。同时它还是一个可重入锁。
+
+有关 `synchronized` 的详细介绍，看[这里](../java-multithread/lock#介绍一下-Synchronized-关键字？)。
 
 ## 介绍一下 volatile 关键字？
 

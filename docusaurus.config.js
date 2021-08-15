@@ -1,5 +1,7 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const math = require('remark-math');
+const katex = require('rehype-katex');
 
 module.exports = {
     title: '面试知识点整理',
@@ -54,6 +56,7 @@ module.exports = {
             darkTheme: darkCodeTheme,
             additionalLanguages: ['java'],
         },
+        zoomSelector: '.markdown :not(em) > img'
     },
     presets: [
         [
@@ -62,7 +65,9 @@ module.exports = {
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
                     path: 'source',
-                    showLastUpdateTime: true
+                    showLastUpdateTime: true,
+                    remarkPlugins: [math],
+                    rehypePlugins: [katex],
                 },
                 blog: false,
                 theme: {
@@ -70,6 +75,13 @@ module.exports = {
                 },
             },
         ],
+    ],
+    stylesheets: [
+        {
+            href: "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css",
+            integrity: "sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc",
+            crossorigin: "anonymous",
+        },
     ],
     plugins: [
         [
@@ -88,7 +100,8 @@ module.exports = {
                     "no_documents_were_found": "找不对对应的文档"
                 }
             },
-        ]
+        ],
+        'plugin-image-zoom'
     ],
     i18n: {
         defaultLocale: 'zh-Hans',

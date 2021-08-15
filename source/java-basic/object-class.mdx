@@ -3,6 +3,8 @@ title: 😁 Object 类
 sidebar_position: 4
 ---
 
+----
+
 ## 介绍一下 equals() 方法？
 
 - 自反性：自身和自身是相同的
@@ -28,7 +30,7 @@ sidebar_position: 4
 
 虽然 `clone()` 是 `Object` 类中的方法，但直接重写（因为 `clone()` 方法的权限是 `protected`，需要重写并将权限放大，要不然无法调用）并调用会抛出 `CloneNotSupportedException` 异常。这是因为 `Cloneable` 接口的规定：如果一个类没有实现 `Cloneable` 接口又调用了 `clone()` 方法，就会抛出 `CloneNotSupportedException` 异常。
 
-:::warning 浅拷贝
+:::caution 浅拷贝
 直接调用 `super.clone()` 所得到对象的是浅拷贝对象。
 :::
 
