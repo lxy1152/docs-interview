@@ -1,0 +1,10 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Java 基础": {
+    "message": "Java 基础",
+    "description": "The label for category Java 基础 in sidebar tutorialSidebar"
+  }
+}
