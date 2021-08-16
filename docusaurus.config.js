@@ -18,7 +18,7 @@ module.exports = {
             title: '面试知识点整理',
             logo: {
                 alt: 'logo',
-                src: 'img/logo.svg',
+                src: 'img/logo.png',
             },
             items: [
                 {
