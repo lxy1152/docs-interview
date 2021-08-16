@@ -8,157 +8,18 @@ slug: /
 
 这个文档中的内容是按照我自己的面试经历，对面试中可能涉及的知识点进行的整理。但是所梳理的内容并不包含算法题，因为算法题对于校招同学来说要求会比较高，但对于社招来说要求会很低。如果你是校招生，建议去看其他人整理的算法题复习思路（看情况吧，以后我可能也会整理一下）；如果是社招，那么算法题着重看二叉树、链表、排序算法的简单题就够了。可以根据在 [codetop](https://codetop.cc/#/home) 上列出的算法题有针对性的进行复习。
 
-## Java 基础
+本文档包含以下内容：
 
-这部分的内容平时开发会经常用，但是面试中问的确实比较少，快速看看当作复习就行了。
-
-### 文章列表
-
-1. [面向对象的特点](/java-basic/oo-feature)：Java 是一门面向对象的程序语言，OO 的特点有必要了解一下
-2. [关键字](/java-basic/keyword)：Java 中提供了非常多的关键字，某些关键字要特别了解一下
-3. [包装类和缓存池](/java-basic/datatype-wrapper-cache)：Java 提供了 8 中基本数据类型以及预知对应的包装类，某些值可能会经常使用，所以还提供了缓存池
-4. [Object类](/java-basic/object-class)：Java 中所有对象之父 - `Object` 类
-5. [String类](/java-basic/string-class)：Java 中的字符串实现
-6. [异常](/java-basic/exception)：Java 中的异常机制
-7. [反射](/java-basic/reflect)：Java 提供的在运行时动态获取或调用方法或属性的机制
-8. [泛型](/java-basic/generics)：Java 提供的参数化类型
-9. [其他](/java-basic/other)：其他问题整理
-
-### 重点关注
-
-1. [synchronized 关键字](/java-basic/keyword#介绍一下-synchronized-关键字？)
-2. [volatile 关键字](/java-basic/keyword#介绍一下-volatile-关键字？)
-3. [缓存池](/java-basic/datatype-wrapper-cache#了解缓存池吗？)
-4. [equals() 方法](/java-basic/object-class#介绍一下-equals()-方法？)
-5. [hashcode() 方法](/java-basic/object-class#介绍一下-hashcode()-方法？)
-6. [字符串池](/java-basic/string-class#了解字符串池（string-pool）吗？)
-
-## Java 容器
-
-容器是一种保存其他的数据的数据结构，在 Java 中其使用是非常广泛的，因此它也是面试的重点，尤其是线程不安全的 `HashMap` 与线程安全的 `ConcurrentHashMap`，这俩真是面试必问的问题。容器主要可以分为以下几部分，根据不同的实现方式，各个接口也提供了多样的实现类，可以根据具体的使用场景选择更为合适的容器。
-
-### 文章列表
-
-1. Set：一种保存不重复元素的容器
-    - [TreeSet](/java-collection/set/treeset)
-    - [HashSet](/java-collection/set/hashset)
-    - [LinkedHashSet](/java-collection/set/linkedhashset)
-2. List：一种按照顺序保存元素的容器
-    - [ArrayList](/java-collection/list/arraylist)
-    - [Vector](/java-collection/list/vector)
-    - [LinkedList](/java-collection/list/linkedlist)
-3. Map：一种保存某种映射关系的容器
-    - [HashMap](/java-collection/map/hashmap)
-    - [HashTable](/java-collection/map/hashtable)
-    - [ConcurrentHashMap](/java-collection/map/concurrenthashmap)
-    - [LinkedHashMap](/java-collection/map/linkedhashmap)
-
-### 重点关注
-
-1. [ArrayList 的底层实现](/java-collection/list/arraylist#arraylist-的底层实现？)
-2. [ArrayList 的默认大小](/java-collection/list/arraylist#arraylist-的默认大小是多少？)
-3. [ArrayList 的扩容机制](/java-collection/list/arraylist#arraylist-的扩容机制？)
-4. [ArrayList 如何删除元素](/java-collection/list/arraylist#arraylist-如何删除元素？)
-5. [Vector 的替代方案](/java-collection/list/vector#vector-的替代方案有哪些？)
-6. [LinkedList 的底层实现](/java-collection/list/linkedlist#linkedList-的底层实现？)
-7. [LinkedList 与 ArrayList 的区别](/java-collection/list/linkedlist#与-arraylist-的区别？)
-8. [HashMap 涉及的名词概念](/java-collection/map/hashmap#hashmap-涉及的名词概念有哪些？)
-9. [HashMap 的底层实现](/java-collection/map/hashmap#hashmap-的底层存储结构？)
-10. [HashMap 如何扩容](/java-collection/map/hashmap#hashmap-如何扩容？)
-11. [HashMap put 方法](/java-collection/map/hashmap#hashmap-put-方法的逻辑是什么？)
-12. [HashMap get 方法](/java-collection/map/hashmap#hashmap-get-方法的逻辑是什么？)
-13. [HashMap 的线程不安全](/java-collection/map/hashmap#hashmap-的线程不安全性体现在哪里？)
-14. [HashTable 的替代方案](/java-collection/map/hashtable#hashtable-的替代方案？)
-15. [ConcurrentHashMap 的线程安全](/java-collection/map/concurrenthashmap#concurrenthashmap-是如何保证线程安全的？)
-
-## Java 并发
-
-多线程开发是老生常谈的问题了，最重要的是如何保证多线程情况下数据的一致性。提供一些建议：
-                                     
-- 给线程起个有意义的名字，这样可以方便找日志
-- 缩小同步范围，从而减少锁争用，例如对于 `synchronized`，应该尽量同步代码块而不是同步方法
-- 多用同步工具少用 `wait()` 和 `notify()`。因为 `CountDownLatch`，`CyclicBarrier` 和 `Semaphore` 这些同步类简化了编码操作，而用 `wait()` 和 `notify()` 很难实现复杂控制流
-- 使用 `BlockingQueue` 实现生产者消费者问题
-- 多用并发集合少用同步集合，例如应该使用 `ConcurrentHashMap` 而不是 `Hashtable`
-- 使用本地变量和不可变类来保证线程安全
-- 使用线程池而不是直接创建线程，这是因为创建线程代价很高，线程池可以有效地利用有限的线程来启动任务
-
-### 文章列表
-
-1. [JMM](/java-multithread/jmm)：JVM 定义的 Java 内存模型
-2. [进程和线程](/java-multithread/process-thread)：看看在 Java 中如何使用线程以及如何解决多线程之间的协作问题
-3. [线程池](/java-multithread/thread-pool)：频繁创建线程的开销太大，使用池化思想缓存线程
-4. [J.U.C](/java-multithread/juc)：JDK 提供的适用于并发编程的工具类
-5. [锁](/java-multithread/lock)：如何通过锁来保证线程安全以及锁的优化
-6. [无同步方案](/java-multithread/non-lock)：某些情况下不需使用锁也可以保证线程安全
-
-### 重点关注
-
-1. [什么是 JMM](/java-multithread/jmm#什么是-java-内存模型（jmm）？)
-2. [主内存与工作内存](/java-multithread/jmm#什么是主内存和工作内存？)
-3. [在 Java 中使用线程](/java-multithread/process-thread#在-java-中如何使用线程？)
-4. [如何创建线程池](/java-multithread/thread-pool#如何创建一个线程池？)
-5. [线程池的 7 个参数](/java-multithread/thread-pool#介绍一下线程池的-7-个参数？)
-6. [任务调度流程](/java-multithread/thread-pool#介绍一下任务调度的原理？)
-7. [什么是 AQS](/java-multithread/juc#什么是-aqs？)
-8. [synchronized 锁](/java-multithread/lock#介绍一下-synchronized-关键字？)
-9. [synchronized 锁和 Lock 锁的区别](/java-multithread/lock#它们两个有什么区别？)
-10. [什么是 CAS](/java-multithread/lock#什么是-cas？)
-11. [CAS 存在的问题](/java-multithread/lock#cas-存在的问题？)
-12. [锁优化](/java-multithread/lock#锁优化)
-13. [ThreadLocal](/java-multithread/non-lock#如何使用-threadlocal-解决线程安全的问题？)
-
-## Java I/O
-
-基本不问，这部分内容以后再补充。
-
-## JVM
-
-JVM 是 Java 能够实现跨平台运行的基础，这部分的内容也是面试必问的。
-
-### 文章列表
-
-1. [内存区域划分](/jvm/memory-partition)：对于 JVM 而言，内存区域是如何划分的
-2. [类加载机制](/jvm/classloader)：JVM 的类加载机制
-3. [垃圾回收机制](/jvm/gc)：JVM 提供的垃圾回收算法与垃圾回收器
-
-### 重点关注
-
-1. [JVM 内存划分](/jvm/memory-partition#介绍一下-jvm-是怎么划分的内存区域？)
-2. [类的初始化时机](/jvm/classloader#说一下类的初始化时机？)
-3. [new 关键字的实现](/jvm/classloader#new-关键字是如何实现的)
-4. [类加载器](/jvm/classloader#有哪些类加载器？)
-5. [双亲委派机制](/jvm/classloader#什么是双亲委派机制？)
-6. [垃圾回收算法](/jvm/gc#垃圾回收算法)
-7. [CMS 收集器](/jvm/gc#什么是-cms-收集器？)
-8. [G1 收集器](/jvm/classloader#什么是-g1-收集器？)
-
-## 框架使用
-
-框架相关的内容问的较少，简单整理一下。
-
-### 文章列表
-
-1. Spring 全家桶：没的说，开发必用框架
-    - [Spring](/framework/spring/spring)：Spring 最核心的功能
-    - [Spring MVC](/framework/spring/spring-mvc)：用于 web 的框架
-    - [Spring Boot](/framework/spring/springboot)：为了简化开发流程而提出的一个框架
-    - [Spring Cloud](/framework/spring/springcloud)：用于微服务开发的框架
-2. MyBatis：一个操作数据库的半 ORM 框架，因为比较灵活，更适合国内互联网公司使用
-    - [MyBatis](/framework/mybatis/mybatis)：整理 MyBatis 常见问题
-3. 通讯：通讯相关的组件
-    - [Netty](/framework/communication/netty)：基于 NIO 的通讯框架，快就完事了
-    - [Dubbo](/framework/communication/dubbo)：阿里推出的 RPC 通讯框架
-
-### 重点关注
-
-1. [Spring IoC](/framework/spring/spring#什么是-ioc？)
-2. [Spring AOP](/framework/spring/spring#什么是-aop？)
-3. [Spring 中使用的设计模式](/framework/spring/spring#spring-框架中使用的设计模式？)
-4. [@Component 和 @Bean 注解](/framework/spring/spring#component-和-bean-注解的区别？)
-5. [Bean 的生命周期](/framework/spring/spring#bean-的生命周期？)
-6. [Bean 的作用域](/framework/spring/spring#bean-的作用域有哪些？)
-7. [Spring 的三级缓存](/framework/spring/spring#spring-的三级缓存？)
-8. [分布式的优点](/framework/spring/springcloud#为什么要采用分布式开发的方案？)
-9. [MyBatis 中 #{} 和 ${} 的区别](/framework/mybatis/mybatis#-和--的区别？)
-10. [Netty 的线程模型](/framework/communication/netty#介绍一下-netty-的线程模型？)
+1. Java 基础：快速回顾一下 Java 基础知识点
+2. Java 容器：面试必问，此部分内容要多看
+3. Java 并发：面试必问，此部分内容要多看
+4. Java I/O：待整理，基本不问
+5. JVM：面试必问，此部分内容要多看
+6. 框架使用：问的较少，不建议花太多时间准备，如果有微服务相关经验建议好好准备一下微服务相关的内容
+7. MySQL：面试必问，此部分内容要多看
+8. Redis：相对 MySQL 而言，问的会少一些
+9. 中间件：问的相对较少，一般可能会在二面问问
+10. 计算机网络：除了百度其他的都问的比较少
+11. 操作系统：除了 I/O 多路复用，其他的都问的比较少
+12. 设计思想：主要要会写单例，可能会考手写单例
+13. 面经：面经整理
