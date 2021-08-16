@@ -105,7 +105,10 @@ module.exports = {
                     "count_documents_found": "找到了{{ count }}篇文档",
                     "count_documents_found_plural": "找到了{{ count }}篇文档",
                     "no_documents_were_found": "找不对对应的文档"
-                }
+                },
+                docsRouteBasePath: '/',
+                indexBlog: false,
+                indexPages: false
             },
         ],
         'plugin-image-zoom'
