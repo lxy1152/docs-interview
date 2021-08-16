@@ -22,6 +22,20 @@ module.exports = {
             },
             items: [
                 {
+                    href: '/',
+                    label: '主页'
+                },
+                {
+                    type: 'dropdown',
+                    label: '其他内容',
+                    items: [
+                        {
+                            href: 'https://blog.lixiangyu.xyz',
+                            label: '个人博客'
+                        }
+                    ]
+                },
+                {
                     href: 'https://github.com/lxy1152/docs-interview',
                     label: 'GitHub',
                     position: 'right',
@@ -32,24 +46,16 @@ module.exports = {
             style: 'dark',
             links: [
                 {
-                    title: 'Community',
+                    title: '其他内容',
                     items: [
                         {
-                            label: 'Stack Overflow',
-                            href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-                        },
-                        {
-                            label: 'Discord',
-                            href: 'https://discordapp.com/invite/docusaurus',
-                        },
-                        {
-                            label: 'Twitter',
-                            href: 'https://twitter.com/docusaurus',
-                        },
+                            label: '个人博客',
+                            href: 'https://blog.lixiangyu.xyz',
+                        }
                     ],
                 },
             ],
-            copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+            copyright: `Copyright © ${new Date().getFullYear()} Xiangyu Li. Built with Docusaurus.`,
         },
         prism: {
             theme: lightCodeTheme,
@@ -68,6 +74,7 @@ module.exports = {
                     showLastUpdateTime: true,
                     remarkPlugins: [math],
                     rehypePlugins: [katex],
+                    routeBasePath: '/'
                 },
                 blog: false,
                 theme: {
